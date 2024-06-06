@@ -7,7 +7,7 @@
     <data>
 
         <import type="android.view.View" />
-
+        <import type="com.example.cloudcompute.ui.main.home.HomeViewModel" />
         <variable
             name="vm"
             type="com.example.cloudcompute.ui.main.home.HomeViewModel" />
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="2024-05-31 16:30 PM"
+            android:text="@{vm.uiState.currentDateTime}"
             android:textColor="@color/white"
             android:textSize="24dp"
             android:textStyle="bold"
@@ -136,7 +136,7 @@
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여유"
+            android:text="@{vm.getStatusText(vm.uiState.status)}"
             android:textColor="@color/white"
             android:textSize="46dp"
             android:textStyle="bold"
@@ -171,7 +171,7 @@
                 android:id="@+id/tv_expected_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15"
+                android:text="@{String.valueOf(vm.uiState.expectedWaitTime)}"
                 android:layout_marginLeft="6dp"
                 android:textColor="@color/white"
                 android:textSize="24dp"
@@ -221,7 +221,7 @@
                 android:id="@+id/tv_expected_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15"
+                android:text="@{String.valueOf(vm.uiState.expectedPeopleCount)}"
                 android:layout_marginLeft="6dp"
                 android:textColor="@color/white"
                 android:textSize="24dp"
@@ -235,7 +235,7 @@
                 android:id="@+id/tv_people_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="분"
+                android:text="명"
                 android:textColor="@color/white"
                 android:textSize="22dp"
                 android:textStyle="bold"
@@ -254,6 +254,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="22dp"
+            android:layout_marginTop="18dp"
             android:gravity="center"
             android:paddingVertical="16dp"
             android:background="@drawable/rect_leisure"
