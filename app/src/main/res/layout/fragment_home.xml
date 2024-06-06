@@ -15,9 +15,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/leisurely_main"
+        tools:background="@color/leisurely_main"
+        app:statusBackground="@{vm.uiState.status}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -126,7 +128,8 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_leisure"
+            tools:src="@drawable/ic_leisure"
+            app:statusImage="@{vm.uiState.status}"
             app:layout_constraintBottom_toTopOf="@id/guideline_56_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -248,6 +251,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_find_alternative"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="대체 노선 찾기"
@@ -255,6 +259,7 @@
             android:textColor="@color/white"
             android:textSize="22dp"
             android:layout_marginTop="18dp"
+            app:statusBackgroundResource="@{vm.uiState.status}"
             android:gravity="center"
             android:paddingVertical="16dp"
             android:background="@drawable/rect_leisure"

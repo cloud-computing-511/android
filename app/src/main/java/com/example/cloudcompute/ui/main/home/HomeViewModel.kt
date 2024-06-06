@@ -2,18 +2,14 @@ package com.example.cloudcompute.ui.main.home
 
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.stream.StreamSupport
-
 import javax.inject.Inject
 
 
@@ -38,7 +34,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         _uiState.update { state ->
             state.copy(
                 currentDateTime = getCurrentDateTime(),
-                status = Status.LEISURELY,
+                status = Status.CROWDED,
                 expectedPeopleCount = 15,
                 expectedWaitTime = 10
             )

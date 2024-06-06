@@ -6,4 +6,10 @@
     <color name="leisurely_main">#0177BD</color>
     <color name="leisurely_sub">#039be6</color>
 
+    <color name="normal_main">#0397a6</color>
+    <color name="normal_sub">#01bdd5</color>
+
+    <color name="crowded_main">#ef6c02</color>
+    <color name="crowded_sub">#FB8B01</color>
+
 </resources>
