@@ -3,8 +3,8 @@
     <style name="Base.Theme.Ohanahana" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSplashScreenBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/leisurely_main</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Theme.Ohanahana" parent="Base.Theme.Ohanahana" />
