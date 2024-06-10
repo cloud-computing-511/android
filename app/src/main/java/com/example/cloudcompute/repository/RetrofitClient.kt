@@ -1,5 +1,6 @@
 package com.example.cloudcompute.repository
 
+import com.example.cloudcompute.service.CongestionApiService
 import com.example.cloudcompute.service.TodoApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,5 +25,14 @@ object RetrofitClient {
             .client(okHttpClient)
             .build()
             .create(TodoApiService::class.java)
+    }
+
+    val todoCongestionService: CongestionApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+            .create(CongestionApiService::class.java)
     }
 }

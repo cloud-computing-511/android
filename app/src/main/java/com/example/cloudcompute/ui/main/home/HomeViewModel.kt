@@ -1,10 +1,12 @@
 package com.example.cloudcompute.ui.main.home
 
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.cloudcompute.repository.RetrofitClient
 import com.example.cloudcompute.service.dto.ErrorResponse
+import com.example.cloudcompute.service.dto.SensorData
 import com.example.cloudcompute.service.dto.Todo
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -70,7 +72,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 } else {
                     response.errorBody()?.let { errorBody ->
                         val gson = GsonBuilder().create()
-                        val errorResponse = gson.fromJson(errorBody.string(), ErrorResponse::class.java)
+                        val errorResponse =
+                            gson.fromJson(errorBody.string(), ErrorResponse::class.java)
                         Log.e("HomeViewModel", "API 요청 실패: ${errorResponse.errorMessage}")
                     }
                 }
@@ -82,6 +85,22 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         })
     }
 
+    private fun fetchCongestion() {
+        RetrofitClient.todoCongestionService.getCongestion()
+            .enqueue(object : Callback<SensorData> {
+                override fun onResponse(call: Call<SensorData>, response: Response<SensorData>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            Log.d("api", it.toString())
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SensorData>, t: Throwable) {
+                    Log.e(TAG, "API 요청 중 오류 발생: ${t.message}")
+                }
+            })
+    }
 
 
 }
