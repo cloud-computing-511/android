@@ -85,7 +85,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         })
     }
 
-    private fun fetchCongestion() {
+    fun fetchCongestion() {
         RetrofitClient.todoCongestionService.getCongestion()
             .enqueue(object : Callback<SensorData> {
                 override fun onResponse(call: Call<SensorData>, response: Response<SensorData>) {
