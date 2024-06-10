@@ -91,7 +91,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 override fun onResponse(call: Call<SensorData>, response: Response<SensorData>) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            Log.d("api", it.toString())
+                            Log.d("api", "$it")
                         }
                     }
                 }
