@@ -7,7 +7,7 @@ import com.example.cloudcompute.R
 import com.example.cloudcompute.base.BaseFragment
 import com.example.cloudcompute.databinding.FragmentHomeBinding
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -17,6 +17,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.setDummy()
+        binding.ivRefresh.setOnClickListener {
+            viewModel.fetchCongestion()
+        }
     }
+
 }
