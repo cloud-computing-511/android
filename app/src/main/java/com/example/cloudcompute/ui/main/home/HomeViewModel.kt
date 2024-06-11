@@ -64,7 +64,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                             _uiState.update {state ->
                                 state.copy(
                                     currentDateTime = it.currentDateTime,
-                                    status = Status.LEISURELY,
+                                    status = getStatusFromText(it.congestion),
                                     expectedWaitTime = it.expectedWaitingTime,
                                     expectedPeopleCount = it.expectedWaitingPeople,
                                     isLoading = false
