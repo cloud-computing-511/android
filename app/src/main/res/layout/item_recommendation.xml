@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/iv_bus"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_bus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <View
+        android:id="@+id/line_between"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:background="#80747775"
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_bus"
+        app:layout_constraintLeft_toLeftOf="@id/iv_bus"
+        app:layout_constraintRight_toRightOf="@id/iv_bus" />
+
+    <ImageView
+        android:id="@+id/iv_subway"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_subway"
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@id/line_between"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_bus_stop_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="버스 정류장"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintTop_toTopOf="@id/iv_bus"
+        app:layout_constraintBottom_toBottomOf="@id/iv_bus"
+        app:layout_constraintLeft_toRightOf="@id/iv_bus"/>
+
+    <TextView
+        android:id="@+id/tv_subway_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="목적지역"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="@id/tv_bus_stop_name"
+        app:layout_constraintTop_toTopOf="@id/iv_subway"
+        app:layout_constraintBottom_toBottomOf="@id/iv_subway"/>
+
+    <TextView
+        android:id="@+id/tv_bus_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="버스명"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:textColor="#294082"
+        android:background="@drawable/rect_bus"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="4dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="3dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_bus_stop_name"
+        app:layout_constraintLeft_toLeftOf="@id/tv_bus_stop_name"/>
+
+    <TextView
+        android:id="@+id/tv_remain_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3분 전"
+        android:textSize="14sp"
+        android:textColor="@color/remain_time_color"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_bus_name"
+        app:layout_constraintTop_toTopOf="@id/tv_bus_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bus_name"/>
+
+    <TextView
+        android:id="@+id/tv_estimated_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예상 소요 00분"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintTop_toTopOf="@id/tv_bus_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bus_name"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
