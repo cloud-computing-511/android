@@ -46,11 +46,16 @@ class RecommendAdapter(private var itemList: MutableList<RecommendItem>) : Recyc
                 currentItem.remainTime = millisUntilFinished
                 val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
-                holder.remainTimeTextView.text = String.format("%d분 %d초 전", minutes, seconds)
+
+                holder.remainTimeTextView.text = if (minutes > 0) {
+                    String.format("%d분 %d초 전", minutes, seconds)
+                } else {
+                    String.format("%d초 전", seconds)
+                }
             }
 
             override fun onFinish() {
-                holder.remainTimeTextView.text = "가능한 버스가 없음"
+                holder.remainTimeTextView.text = "없음"
             }
         }.start()
 
