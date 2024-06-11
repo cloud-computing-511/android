@@ -1,6 +1,6 @@
 package com.example.cloudcompute.service.dto
 
-data class SensorData(
+data class CongestionData(
     val currentLocation : String,
     val currentDateTime : String,
     val congestion: String,
