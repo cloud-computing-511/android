@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,8 +48,17 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun getStatusText(status: Status): String {
         return when (status) {
             Status.LEISURELY -> "여유"
-            Status.NORMAL -> "보통"
+            Status.NORMAL -> "일반"
             Status.CROWDED -> "혼잡"
+        }
+    }
+
+    fun getStatusFromText(text: String): Status {
+        return when (text) {
+            "여유" -> Status.LEISURELY
+            "일반" -> Status.NORMAL
+            "혼잡" -> Status.CROWDED
+            else -> throw IllegalArgumentException("Unknown status text: $text")
         }
     }
 
@@ -58,7 +68,15 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 override fun onResponse(call: Call<CongestionData>, response: Response<CongestionData>) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            Log.d("debugging", "$it")
+                            _uiState.update {state ->
+                                state.copy(
+                                    currentDateTime = it.currentDateTime,
+                                    status = getStatusFromText(it.congestion),
+                                    expectedWaitTime = it.expectedWaitingTime,
+                                    expectedPeopleCount = it.expectedWaitingPeople
+                                )
+
+                            }
                         }
                     }
                 }
@@ -103,13 +121,4 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             })
     }
 
-
-
-
 }
-
-private fun getCurrentDateTime(): String {
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm a", Locale.getDefault())
-    return dateFormat.format(Date())
-}
-
