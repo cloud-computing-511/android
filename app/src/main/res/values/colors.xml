@@ -12,4 +12,8 @@
     <color name="crowded_main">#ef6c02</color>
     <color name="crowded_sub">#FB8B01</color>
 
+    <color name="bus_box">#EBEBEB</color>
+    <color name="bus_color1">#294082</color>
+    <color name="bus_color2">#00CA37</color>
+    <color name="remain_time_color">#FF4720</color>
 </resources>
