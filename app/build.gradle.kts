@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cloudcompute"
+    namespace = "com.cloud.cloudcompute"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cloudcompute"
+        applicationId = "com.cloud.cloudcompute"
         minSdk = 26
         targetSdk = 33
         versionCode = 1
