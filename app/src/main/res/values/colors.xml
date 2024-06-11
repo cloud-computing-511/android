@@ -16,4 +16,6 @@
     <color name="bus_color1">#294082</color>
     <color name="bus_color2">#00CA37</color>
     <color name="remain_time_color">#FF4720</color>
+    <color name="divider_color">#747775</color>
+
 </resources>

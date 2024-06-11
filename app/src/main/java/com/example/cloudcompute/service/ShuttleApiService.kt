@@ -1,6 +1,5 @@
 package com.example.cloudcompute.service
 
-import com.example.cloudcompute.service.dto.RecommendData
 import com.example.cloudcompute.service.dto.ShuttleData
 import retrofit2.Call
 import retrofit2.http.GET

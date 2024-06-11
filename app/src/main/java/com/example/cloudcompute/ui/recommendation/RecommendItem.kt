@@ -1,9 +1,9 @@
 package com.example.cloudcompute.ui.recommendation
 
-data class RecommendationItem(
+data class RecommendItem(
     val busStopName: String,
     val subwayName: String,
     val busName: String,
-    val remainTime: String,
-    val estimatedTime: String
+    var remainTime: Long,
+    val estimatedTime: String,
 )
