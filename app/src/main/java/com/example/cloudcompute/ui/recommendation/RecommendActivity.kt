@@ -25,9 +25,11 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
 
         // LiveData 옵저빙
         viewModel.busData.observe(this, Observer { data ->
-            showLoading(true)
             recyclerViewAdapter.updateData(data)
-            showLoading(false)
+        })
+
+        viewModel.isLoading.observe(this, Observer { isLoading ->
+            showLoading(isLoading)
         })
 
         // 뒤로가기 버튼 클릭 이벤트

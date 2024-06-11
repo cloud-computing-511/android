@@ -19,11 +19,15 @@ class RecommendViewModel @Inject constructor() : ViewModel() {
     private val _busData = MutableLiveData<List<RecommendItem>>()
     val busData: LiveData<List<RecommendItem>> get() = _busData
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     init {
         fetchRecommend()
     }
 
     fun fetchRecommend() {
+        _isLoading.value = true
         RetrofitClient.recommendService.getRecommend()
             .enqueue(object : Callback<RecommendData> {
                 override fun onResponse(call: Call<RecommendData>, response: Response<RecommendData>) {
@@ -36,14 +40,17 @@ class RecommendViewModel @Inject constructor() : ViewModel() {
                                 it.inhaFrontGate.toRecommendItem()
                             )
                             _busData.value = dataList
+                            _isLoading.value = false
                         }
                     } else {
                         Log.e("RecommendViewModel", "Response was not successful")
+                        _isLoading.value = false
                     }
                 }
 
                 override fun onFailure(call: Call<RecommendData>, t: Throwable) {
                     Log.e("RecommendViewModel", "API 요청 중 오류 발생: ${t.message}")
+                    _isLoading.value = false
                 }
             })
     }
