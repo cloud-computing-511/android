@@ -2,7 +2,7 @@ package com.example.cloudcompute.repository
 
 import com.example.cloudcompute.service.CongestionApiService
 import com.example.cloudcompute.service.RecommendApiService
-import com.example.cloudcompute.service.TodoApiService
+import com.example.cloudcompute.service.ShuttleApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,5 +35,14 @@ object RetrofitClient {
             .client(okHttpClient)
             .build()
             .create(RecommendApiService::class.java)
+    }
+
+    val shuttleService: ShuttleApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+            .create(ShuttleApiService::class.java)
     }
 }

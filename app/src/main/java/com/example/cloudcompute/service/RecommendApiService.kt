@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface RecommendApiService {
 
     /**
-     * [GET] 혼잡도 조회하기
+     * [GET] 추천 버스 조회하기
      */
     @GET("/bus/recommend")
     fun getRecommend(): Call<RecommendData>

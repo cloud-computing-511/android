@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.cloudcompute.repository.RetrofitClient
 import com.example.cloudcompute.service.dto.RecommendData
 import com.example.cloudcompute.service.dto.CongestionData
+import com.example.cloudcompute.service.dto.ShuttleData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -39,6 +40,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     init {
         fetchCongestion()
         fetchRecommend()
+        fetchShuttle()
     }
 
 
@@ -83,6 +85,25 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 }
             })
     }
+
+    fun fetchShuttle() {
+        RetrofitClient.shuttleService.getShuttle()
+            .enqueue(object : Callback<ShuttleData> {
+                override fun onResponse(call: Call<ShuttleData>, response: Response<ShuttleData>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            Log.d("debugging", "$it")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ShuttleData>, t: Throwable) {
+                    Log.e("debugging", "API 요청 중 오류 발생: ${t.message}")
+                }
+            })
+    }
+
+
 
 
 }
