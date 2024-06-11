@@ -1,16 +1,19 @@
 package com.example.cloudcompute.service.dto
 
 data class RecommendData(
-    val buses: List<Bus>
-) {
-    data class Bus(
-        val busId: String,
-        val busNumber: String,
-        val busStopId: String,
-        val busStopNumber: String,
+    val shuttle: BusInfo,
+    val ddg: BusInfo,
+    val yg: BusInfo,
+    val inhaFrontGate: BusInfo) {
+    data class BusInfo(
         val busStopName: String,
+        val busStopNumber: String?,
+        val busNumber: String,
         val remainTime: Int,
         val remainBusStop: Int,
-        val congestion: Int
+        val congestion: Int,
+        val des: String,
+        val estimatedTime: Int,
+        val isTransfer: Boolean
     )
 }

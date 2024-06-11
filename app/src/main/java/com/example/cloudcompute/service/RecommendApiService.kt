@@ -9,6 +9,6 @@ interface RecommendApiService {
     /**
      * [GET] 추천 버스 조회하기
      */
-    @GET("/bus/recommend")
+    @GET("/bus")
     fun getRecommend(): Call<RecommendData>
 }

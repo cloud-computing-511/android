@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import com.example.cloudcompute.R
 import com.example.cloudcompute.base.BaseFragment
 import com.example.cloudcompute.databinding.FragmentHomeBinding
-import com.example.cloudcompute.ui.recommendation.RecommendationActivity
+import com.example.cloudcompute.ui.recommendation.RecommendActivity
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
 
         binding.btnFindAlternative.setOnClickListener {
-            val intent = Intent(requireContext(), RecommendationActivity::class.java)
+            val intent = Intent(requireContext(), RecommendActivity::class.java)
             startActivity(intent)
         }
     }

@@ -36,13 +36,4 @@ object RetrofitClient {
             .build()
             .create(RecommendApiService::class.java)
     }
-
-    val shuttleService: ShuttleApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(ShuttleApiService::class.java)
-    }
 }
