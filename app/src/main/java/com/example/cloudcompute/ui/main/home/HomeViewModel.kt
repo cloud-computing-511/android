@@ -18,9 +18,10 @@ import javax.inject.Inject
 
 data class HomeUiState(
     val currentDateTime: String = "",
-    val status: Status = Status.LEISURELY,
+    val status: Status? = Status.CROWDED,
     val expectedWaitTime: Int = 0,
-    val expectedPeopleCount: Int = 0
+    val expectedPeopleCount: Int = 0,
+    val isLoading: Boolean = true
 )
 
 enum class Status {
@@ -32,11 +33,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
-
-    init {
-        fetchCongestion()
-    }
-
 
     fun getStatusText(status: Status): String {
         return when (status) {
@@ -56,6 +52,9 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     }
 
     fun fetchCongestion() {
+
+        _uiState.update { it.copy(isLoading = true) }
+
         RetrofitClient.congestionService.getCongestion()
             .enqueue(object : Callback<CongestionData> {
                 override fun onResponse(call: Call<CongestionData>, response: Response<CongestionData>) {
@@ -65,9 +64,10 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                             _uiState.update {state ->
                                 state.copy(
                                     currentDateTime = it.currentDateTime,
-                                    status = getStatusFromText(it.congestion),
+                                    status = Status.LEISURELY,
                                     expectedWaitTime = it.expectedWaitingTime,
-                                    expectedPeopleCount = it.expectedWaitingPeople
+                                    expectedPeopleCount = it.expectedWaitingPeople,
+                                    isLoading = false
                                 )
 
                             }
