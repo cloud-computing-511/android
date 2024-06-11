@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun getStatusText(status: Status): String {
         return when (status) {
             Status.LEISURELY -> "여유"
-            Status.NORMAL -> "일반"
+            Status.NORMAL -> "보통"
             Status.CROWDED -> "혼잡"
         }
     }
@@ -68,6 +68,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 override fun onResponse(call: Call<CongestionData>, response: Response<CongestionData>) {
                     if (response.isSuccessful) {
                         response.body()?.let {
+                            Log.d("debugging", "$it")
                             _uiState.update {state ->
                                 state.copy(
                                     currentDateTime = it.currentDateTime,
