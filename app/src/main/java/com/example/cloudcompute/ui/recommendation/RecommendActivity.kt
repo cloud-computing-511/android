@@ -1,6 +1,7 @@
 package com.example.cloudcompute.ui.recommendation
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +25,9 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
 
         // LiveData 옵저빙
         viewModel.busData.observe(this, Observer { data ->
+            showLoading(true)
             recyclerViewAdapter.updateData(data)
+            showLoading(false)
         })
 
         // 뒤로가기 버튼 클릭 이벤트
@@ -34,6 +37,15 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
 
         binding.btnRefresh.setOnClickListener {
             viewModel.fetchRecommend() // 새로고침 시 API 다시 호출
+        }
+    }
+
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            binding.progressBar.visibility = View.VISIBLE
+        }
+        if(!show) {
+            binding.progressBar.visibility = View.GONE
         }
     }
 }
