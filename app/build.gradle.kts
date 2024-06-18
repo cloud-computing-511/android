@@ -6,15 +6,15 @@ plugins {
 }
 
 android {
-    namespace = "com.ohana.cloudcompute"
+    namespace = "com.fiveoneone.cloudcompute"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.ohana.cloudcompute"
+        applicationId = "com.fiveoneone.cloudcompute"
         minSdk = 26
         targetSdk = 33
         versionCode = 1
-        versionName = "1.01"
+        versionName = "1.00"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
