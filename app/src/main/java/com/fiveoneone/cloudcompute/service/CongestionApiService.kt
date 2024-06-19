@@ -9,6 +9,6 @@ interface CongestionApiService {
     /**
      * [GET] 혼잡도 조회하기
      */
-    @GET("/congestion")
+    @GET("/congestion/")
     fun getCongestion(): Call<CongestionData>
 }

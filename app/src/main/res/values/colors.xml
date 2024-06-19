@@ -12,6 +12,12 @@
     <color name="crowded_main">#ef6c02</color>
     <color name="crowded_sub">#FB8B01</color>
 
+    <color name="error_main">#515151</color>
+    <color name="error_sub">#A9A9A9</color>
+
+    <color name="inactive_main">#212020</color>
+    <color name="inactive_sub">#484848</color>
+
     <color name="bus_box">#EBEBEB</color>
     <color name="bus_color1">#294082</color>
     <color name="bus_color2">#00CA37</color>

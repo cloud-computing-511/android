@@ -18,14 +18,14 @@ import javax.inject.Inject
 
 data class HomeUiState(
     val currentDateTime: String = "",
-    val status: Status? = Status.CROWDED,
-    val expectedWaitTime: Int = 0,
-    val expectedPeopleCount: Int = 0,
+    val status: Status? = Status.SENSOR_INACTIVE,
+    val expectedWaitTime: String = "-",
+    val expectedPeopleCount: String = "-",
     val isLoading: Boolean = true
 )
 
 enum class Status {
-    LEISURELY, NORMAL, CROWDED
+    LEISURELY, NORMAL, CROWDED, SENSOR_ERROR, SENSOR_INACTIVE
 }
 
 @HiltViewModel
@@ -39,14 +39,18 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             Status.LEISURELY -> "여유"
             Status.NORMAL -> "보통"
             Status.CROWDED -> "혼잡"
+            Status.SENSOR_ERROR -> "센서 이상"
+            Status.SENSOR_INACTIVE -> "센서 미작동 시간"
         }
     }
 
     fun getStatusFromText(text: String): Status {
         return when (text) {
-            "여유" -> Status.LEISURELY
-            "일반" -> Status.NORMAL
-            "혼잡" -> Status.CROWDED
+            "SPARE" -> Status.LEISURELY
+            "NORMAL" -> Status.NORMAL
+            "CONGESTION" -> Status.CROWDED
+            "SENSOR_ERROR" -> Status.SENSOR_ERROR
+            "SENSOR_INACTIVE" -> Status.SENSOR_INACTIVE
             else -> throw IllegalArgumentException("Unknown status text: $text")
         }
     }
