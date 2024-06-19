@@ -15,7 +15,7 @@ fun setStatusBackground(view: View, status: Status?) {
             Status.NORMAL -> R.color.normal_main
             Status.CROWDED -> R.color.crowded_main
             Status.SENSOR_ERROR -> R.color.error_main
-            Status.SENSOR_INACTIVE -> R.color.error_main
+            Status.SENSOR_INACTIVE -> R.color.inactive_main
         }
         view.setBackgroundColor(view.context.getColor(color))
     }

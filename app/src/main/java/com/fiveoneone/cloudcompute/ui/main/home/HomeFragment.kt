@@ -29,6 +29,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.ivRefresh.setOnClickListener {
             viewModel.fetchCongestion()
+            binding.ivRefresh.isEnabled = false
+            binding.progressBar.visibility = View.VISIBLE
         }
 
         binding.btnFindAlternative.setOnClickListener {
@@ -38,12 +40,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.layoutHome.visibility = View.GONE
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { state ->
-                    if (!state.isLoading) {
-                        binding.layoutHome.visibility = View.VISIBLE
-                    }
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.uiState.collect { state ->
+//                    if (!state.isLoading) {
+//                        binding.layoutHome.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { state ->
+                if (state.isLoading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.ivRefresh.isEnabled = false
+                } else {
+                    binding.layoutHome.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.ivRefresh.isEnabled = true
                 }
             }
         }
